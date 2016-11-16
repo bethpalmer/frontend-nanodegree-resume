@@ -13,7 +13,7 @@ These are HTML strings. As part of the course, you'll be using JavaScript functi
 replace the %data% placeholder text you see in them.
 */
 var HTMLheaderName = '<h1 id="name">%data%</h1>';
-var HTMLheaderRole = '<span>%data%</span><hr>';
+var HTMLheaderRole = '<span class="white-text">%data%</span><hr>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="orange-text">mobile</span><span class="white-text">%data%</span></li>';
@@ -35,12 +35,13 @@ var HTMLworkTitle = ' - %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
+// var HTMLworkDetail = '<li class="flex-item"><span class="work">%data%</span></li>';
 
 var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectImage = '<img src="%data%" class="projectpic">';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
@@ -49,13 +50,13 @@ var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
+var HTMLonlineClasses = '<br><h2>Online Classes</h2>';
 var HTMLonlineTitle = '<a href="#">%data%';
 var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineURL = '<br><a class="online" href="#">%data%</a><br>';
 
-var internationalizeButton = '<button>Internationalize</button>';
+var internationalizeButton = '<br><button>Internationalize Name</button>';
 var googleMap = '<div id="map"></div>';
 
 
@@ -127,7 +128,7 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    locations.push(bio.contact.location);
 
     // iterates through school locations and appends each location to
     // the locations array. Note that forEach is used for array iteration
@@ -141,7 +142,7 @@ function initializeMap() {
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-    work.jobs.forEach(function(job){
+    work.work.forEach(function(job){
       locations.push(job.location);
     });
 
@@ -239,11 +240,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
-  //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+window.addEventListener('resize', function(e) {
+  // Make sure the map bounds get updated on page resize
+ map.fitBounds(mapBounds);
+});

@@ -19,9 +19,14 @@ h6 {
 }
 
 .education-entry,
-.work-entry,
+.work-entry {
+  padding: 0 5%;
+}
+
 .project-entry {
   padding: 0 5%;
+  display: block;
+  float: left;
 }
 
 h1 {
@@ -92,6 +97,12 @@ a {
   display: block;
 }
 
+.online {
+  font-size: 15px;
+  color: #333;
+  line-height: 0px;
+}
+
 .welcome-message {
   font-style: italic;
   font-size: 18px;
@@ -156,11 +167,26 @@ ul {
   list-style-type: none;
 }
 
+.work {
+  list-style-type: disc;
+  padding-left: 2em;
+  font-size: 14px;
+  color: #333;
+  line-height: 21px;
+}
+
 .biopic {
   float: left;
   padding: 10px;
   width: 200px;
   display: none;
+}
+
+.projectpic {
+  float: left;
+  padding: 10px;
+  width: 300px;
+  display: block;
 }
 
 img {
