@@ -259,4 +259,21 @@ console.log(Object.keys(bio).length);
 // $("#header").prepend(formattedRole);
 // $("#header").prepend(formattedName);
 
+// The original
+var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
 
+// Nested flex-box nightmares - container will not accept height of grandchildren elements
+var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><div id="skills" class="flex-column"><ul></ul></div>';
+var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><div id="skills" class="flex-column clear-fix"><ul id="text" class="show flex-item"></ul></div>';
+
+// function liveWell() {
+//  do {
+//      $(".beKind").show();
+//      negativeThoughts.replace(positiveThoughts);
+//      $("#selfExpression").addClass("individuality");
+//      $("#yourNeeds").show("beVulnerable");
+//      $("#oops").error(function(){
+//          alert("I'm sorry. I was wrong")
+//          });
+//  } while (alive === true);
+// };

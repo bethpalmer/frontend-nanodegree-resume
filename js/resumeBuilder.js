@@ -1,7 +1,7 @@
 var bio = {
 	"name" : "Beth Palmer",
 	"role" : "Front-end Developer",
-	"contact" : {
+	"contacts" : {
 	"mobile" : "07523257537",
 	"email" : "bpalmer360@gmail.com",
 	"twitter" : "#notontwitter",
@@ -10,48 +10,81 @@ var bio = {
 	"location" : "Brighton, UK"
 	},
 	"bioPic" : "images/profile.jpg",
-	"welcomeMsg" : "Helloooo, welcome to my online resume where I get to tell you a bit about myself whilst also showing off some of my JavaScript skills. Happy you stopped by :)",
-	"skills" : ["HTML, CSS, JavaScript, GitHub, Grunt, SQL, MySQL, (some knowledge of) Ruby", "Adobe Illustrator, Advanced MS Offcie, Wordpress, DNS", 
+	"welcomeMessage" : "Helloooo, welcome to my online resume where I get to tell you a bit about myself whilst also showing off some of my JavaScript skills. Happy you stopped by :)",
+	"skills" : ["HTML, CSS, JavaScript, GitHub, Grunt, SQL, MySQL, (some knowledge of) Ruby", "Adobe Illustrator, Advanced MS Office, Wordpress, DNS", 
 				"Troubleshooting, Problem solving, Creative thinking", "Viewing things holistically, Simplifying, Customer service",
 				"Hardware, DHCP, TCP/IP, VMWare, VPN, RDP, Windows, Mac"],
+	"skillsImage" : "images/awesomeness.jpg",
 	"display" : function() {
 		var formattedName = HTMLheaderName.replace("%data%", bio.name);
 		var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 		$("#header").prepend(formattedRole);
 		$("#header").prepend(formattedName);
 
-		$("#topContacts").append(HTMLemail.replace("%data%", bio.contact.email));
-		$("#topContacts").append(HTMLtwitter.replace("%data%", bio.contact.twitter));
-		$("#topContacts").append(HTMLgithub.replace("%data%", bio.contact.github));
-		$("#topContacts").append(HTMLblog.replace("%data%", bio.contact.blog));
-		$("#topContacts").append(HTMLlocation.replace("%data%", bio.contact.location));
+		var email = HTMLemail.replace("%data%", bio.contacts.email);
+		$("#topContacts").append(email);
+		var twitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+		$("#topContacts").append(twitter);
+		var github = HTMLgithub.replace("%data%", bio.contacts.github);
+		$("#topContacts").append(github);
+		var blog = HTMLblog.replace("%data%", bio.contacts.blog);
+		$("#topContacts").append(blog);
+		var location = HTMLlocation.replace("%data%", bio.contacts.location);
+		$("#topContacts").append(location);
+
+		$("#footerContacts").append(email);
+		$("#footerContacts").append(twitter);
+		$("#footerContacts").append(github);
+		$("#footerContacts").append(blog);
+		$("#footerContacts").append(location);
 
 		$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
-		$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg));
+
+		$(function(){
+			$(".biopic").hover(function(){
+				$(".biopic").attr('src', 'images/liveWellOutlines1.jpg');
+			},
+			function(){
+				$(".biopic").attr('src', 'images/profile.jpg');
+			})
+		});
+
+
+		$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 		$("#header").append(HTMLskillsStart);
 
-			$(function(){
-				$(".biopic").hover(function(){
-					$(".biopic").attr('src', 'images/liveWellOutlines.jpg');
-				},
-				function(){
-					$(".biopic").attr('src', 'images/profile.jpg')
-				})
-			});
-
-			function displaySkills1() {
-				for (var i=0; i < bio.skills.length; i++) {
-				var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-				$("#skills").append(formattedSkill);
-				};
+		function displaySkills1() {
+			for (var i=0; i < bio.skills.length; i++) {
+			var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+			// var allSkills = "";
+			// allSkills += formattedSkill;
+			// $(allSkills).wrap("<div id='skillstext'></div>");
+			$("#skills").append(formattedSkill);
 			};
 
-			displaySkills1();
+		};
+		displaySkills1();
+
+		var HTMLskillsImage = '<img src="%data%" class="hide awesome" height = 64px>';
+
+		var image = HTMLskillsImage.replace("%data%", bio.skillsImage);
+		$("#skills").append(image);
+
+		$("#skills").mouseover(function(){
+			$(".skillstext").removeClass("show").addClass("hide");
+			$(".awesome").removeClass("hide").addClass("show")
+		});
+		$("#skills").mouseout(function(){
+			$(".awesome").removeClass("show").addClass("hide");
+			$(".skillstext").removeClass("hide").addClass("show")
+		});
+// //Empty div added to bottom of header to fix issue with header not flexing right, after implementing the awesome mouseover solution.
+// 		$("#header").append("<div classs='flex-column'></div>")
 	}
 };
 
 var work = {
-	"work" : [
+	"jobs" : [
 {
 	"title" : "IT Coordinator",
 	"employer" : "Concordia Ltd",
@@ -84,12 +117,11 @@ var work = {
 	"url" : "#"
 }],
 	"display" : function() {
-		work.work.forEach(function(workInfo) {
+		work.jobs.forEach(function(workInfo) {
 			$("#workExperience").append(HTMLworkStart);
 			
 			var workEmployer = HTMLworkEmployer.replace("%data%", workInfo.employer).replace("#", workInfo.url);
 			var workTitle = HTMLworkTitle.replace("%data%", workInfo.title);
-			// $(workEmployer).attr("href", "http://www.concordia.org.uk/");
 			var workEmployerAndTitle = workEmployer + workTitle;
 			$(".work-entry:last").append(workEmployerAndTitle);
 		
@@ -112,14 +144,14 @@ var projects = {
 	"title" : "BStylee website",
 	"dates" : "2014 onwards",
 	"description" : "My own portfolio website, including illustrator designs and examples of my programming work.",
-	"image" : "images/bstylee.co.jpg",
+	"images" : ["images/bstylee.co.jpg"],
 	"url" : "http://www.bstylee.co.uk/"
 },
 {
 	"title" : "Project work Portfolio site",
 	"dates" : "2016",
 	"description" : "A single page portfolio site created as project work towards my Udacity nanodegree.",
-	"image" : "images/front-end-ninja.jpg",
+	"images" : ["images/front-end-ninja.jpg"],
 	"url" :  "#"
 }],
 	"display" : function() {
@@ -135,8 +167,10 @@ var projects = {
 			var projectDescription = HTMLprojectDescription.replace("%data%", projectInfo.description);
 			$(".project-entry:last").append(projectDescription);
 
-			var projectImage = HTMLprojectImage.replace("%data%", projectInfo.image);
+			for (var i=0; i < projectInfo.images.length; i++) {
+			var projectImage = HTMLprojectImage.replace("%data%", projectInfo.images[i]);
 			$(".project-entry:last").append(projectImage);
+			};
 		})
 	}
 };
@@ -144,45 +178,50 @@ var projects = {
 var education = {
 	"schools" : [
 {
-	"schoolName" : "The Ashcombe Secondary School",
+	"name" : "The Ashcombe Secondary School",
 	"dates" : "1994-1999",
 	"location" : "Dorking, Surrey",
-	"qualifications" : "GCSEs: English Lit (A), English Lang (B), Dual Science (A,A), Maths (B), French (A), Geography (A), Graphic Design (A), Music (A)",
+	"degree" : "GCSEs",
+	"majors" : ["English Lit (A)", "English Lang (B)", "Dual Science (A,A)", "Maths (B)", "French (A)", "Geography (A)", "Graphic Design (A)", "Music (A)"],
 	"url" : "http://www.ashcombe.surrey.sch.uk/"
 },
 {
-	"schoolName" : "Collyers College",
+	"name" : "Collyers College",
 	"dates" : "2000-2002",
 	"location" : "Horsham, West Sussex",
-	"qualifications" : "A-levels: Law (B), Media Studies (B), Graphic Communication (B)",
+	"degree" : "A-levels",
+	"majors" : ["Law (B)", "Media Studies (B)", "Graphic Communication (B)"],
 	"url" : "http://www.collyers.ac.uk/"
 },
 {
-	"schoolName" : "Cerco It Training Centre",
+	"name" : "Cerco IT Training Centre",
 	"dates" : "2009",
 	"location" : "Crewe",
-	"qualifications" : "CCSN (Cerco Certified Systems and Networks) Engineer",
+	"degree" : "CCSN (Cerco Certified Systems and Networks) Engineer",
+	"majors" : ["Hardware and systems"],
 	"url" : "https://cercoit.co.uk/"
 }],
 	"onlineCourses" : [
 {
-	"onlineTitle" : "Front-end Developer Nanodegree",
-	"onlineSchool" : "Udacity",
-	"onlineDates" : "2016",
-	"onlineURL" : "https://www.udacity.com"
+	"title" : "Front-end Developer Nanodegree",
+	"school" : "Udacity",
+	"dates" : "2016",
+	"url" : "https://www.udacity.com"
 },
 {
-	"onlineTitle" : "JavaScript Basics / Introduction to JQuery",
-	"onlineSchool" : "Team Treehouse",
-	"onlineDates" : "2016",
-	"onlineURL" : "https://teamtreehouse.com"
+	"title" : "JavaScript Basics / Introduction to JQuery",
+	"school" : "Team Treehouse",
+	"dates" : "2016",
+	"url" : "https://teamtreehouse.com"
 }],
 	"displaySchools" : function() {
 		education.schools.forEach(function(schoolInfo) {
 			$("#education").append(HTMLschoolStart);
 			
-			var schoolName = HTMLschoolName.replace("%data%", schoolInfo.schoolName).replace("#", schoolInfo.url);
-			$(".education-entry:last").append(schoolName);
+			var schoolName = HTMLschoolName.replace("%data%", schoolInfo.name).replace("#", schoolInfo.url);
+			var schoolDegree = HTMLschoolDegree.replace("%data%", schoolInfo.degree);
+			var nameAndDegree = schoolName + schoolDegree;
+			$(".education-entry:last").append(nameAndDegree);
 		
 			var schoolDates = HTMLschoolDates.replace("%data%", schoolInfo.dates);
 			$(".education-entry:last").append(schoolDates);
@@ -190,9 +229,11 @@ var education = {
 			var schoolLocation = HTMLschoolLocation.replace("%data%", schoolInfo.location);
 			$(".education-entry:last").append(schoolLocation);
 
-			var schoolQualifications = HTMLschoolMajor.replace("%data%", schoolInfo.qualifications);
-			$(".education-entry:last").append(schoolQualifications);
-		})
+			for (var i=0; i < schoolInfo.majors.length; i++) {
+			var formattedMajor = HTMLschoolMajor.replace("%data%", schoolInfo.majors[i]);
+			$(".education-entry:last").append(formattedMajor);
+			};
+		});
 	},
 	"displayOnlineCourses" : function() {
 
@@ -201,20 +242,22 @@ var education = {
 		education.onlineCourses.forEach(function(courseInfo) {
 			$("#education").append(HTMLschoolStart);
 
-			var courseTitle = HTMLonlineTitle.replace("%data%", courseInfo.onlineTitle).replace("#", courseInfo.onlineURL);
-			var courseSchool = HTMLonlineSchool.replace("%data%", courseInfo.onlineSchool);
+			var courseTitle = HTMLonlineTitle.replace("%data%", courseInfo.title).replace("#", courseInfo.url);
+			var courseSchool = HTMLonlineSchool.replace("%data%", courseInfo.school);
 			var titleAndSchool = courseTitle + courseSchool;
 			$(".education-entry:last").append(titleAndSchool);
 
-			var courseDates = HTMLonlineDates.replace("%data%", courseInfo.onlineDates);
+			var courseDates = HTMLonlineDates.replace("%data%", courseInfo.dates);
 			$(".education-entry:last").append(courseDates);
 
-			var courseURL = HTMLonlineURL.replace("%data%", courseInfo.onlineURL).replace("#", courseInfo.onlineURL);
+			var courseURL = HTMLonlineURL.replace("%data%", courseInfo.url).replace("#", courseInfo.url);
 			$(".education-entry:last").append(courseURL);
 		})
 	}
 };
 
+// TODO : Beautify education.schools.majors
+// TODO : New Array in projects.images to iterate through
 
 
 function inName(name){
@@ -230,20 +273,8 @@ projects.display();
 education.displaySchools();
 education.displayOnlineCourses();
 
-$("#header").append(internationalizeButton);
+$("#workExperience").prepend(internationalizeButton);
 
 $("#mapDiv").append(googleMap);
 
 console.log("And that's a wrap people!");
-
-// function liveWell() {
-// 	do {
-// 		$(".beKind").show();
-// 		negativeThoughts.replace(positiveThoughts);
-// 		$("#selfExpression").addClass("individuality");
-// 		$("#yourNeeds").show("beVulnerable");
-// 		$("#oops").error(function(){
-// 			alert("I'm sorry. I was wrong")
-// 			});
-// 	} while (alive === true);
-// };

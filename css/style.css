@@ -17,6 +17,12 @@ h6 {
 .clear-fix {
   overflow: auto;
 }
+/*
+.clear-fix::after {
+  content:"";
+  display:block;
+  clear:both;
+}*/
 
 .education-entry,
 .work-entry {
@@ -27,6 +33,10 @@ h6 {
   padding: 0 5%;
   display: block;
   float: left;
+}
+
+button {
+  margin-left: 5%;  
 }
 
 h1 {
@@ -112,7 +122,32 @@ a {
 
 #skills-h3 {
   color: #f5ae23;
+  display: block;
+}
+
+#skills {
+/*  position: relative;*/
+  /*display: block;*/
+/*  overflow: auto;*/
+}
+
+/*
+#inSkills {
+  display: table-row;
+}*/
+
+.hide {
   display: none;
+/*  z-index: -1;*/
+/*  position: absolute;*/
+ /* display: block;*/
+}
+
+.show {
+  visibility: visible;
+/*  z-index: 1;*/
+/*  position: absolute;*/
+/*  display: block;*/
 }
 
 .orange {
@@ -140,8 +175,12 @@ a {
 
 /* TODO: Replace with image later */
 #header {
+/*  background-image: url("images/general-awesomeness.jpg");*/
   background-color: #484848;
+/*  overflow: auto;*/
+/*  display: table;*/
 }
+
 
 .flex-box {
   display: -webkit-flex;
@@ -153,18 +192,37 @@ a {
 }
 
 .flex-column {
+/*  display: -webkit-flex;*/
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; 
   padding: 10px;
+  height: 100%;
+/*  overflow: auto;*/
+/*  position: relative;*/
 }
 
+/*.flex-item {
+  display: flex;
+  flex-direction: column;
+}
+*/
 .center-content {
   padding: 2.5% 5%;
 }
 
 ul {
   list-style-type: none;
+}
+
+#major {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#inline li {
+  display: inline;
+  float: left;
 }
 
 .work {
@@ -179,7 +237,7 @@ ul {
   float: left;
   padding: 10px;
   width: 200px;
-  display: none;
+  display: block;
 }
 
 .projectpic {
@@ -199,6 +257,18 @@ span {
 
 #lets-connect {
   text-align: center;
+}
+
+#map {
+  display: block;
+  height: 100%;
+  margin: 0 5%;
+}
+
+#mapDiv {
+  height: 400px;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
 /* Media queries to handle various device widths */
@@ -227,21 +297,10 @@ span {
   }
 }
 
-#map {
-  display: block;
-  height: 100%;
-  margin: 0 5%;
-}
-
-#mapDiv {
-  height: 400px;
-  width: 100%;
-  padding-bottom: 5%;
-}
-
-@media only screen and (min-width: 750px) {
+/*moved these properties to the id / class to apply to all sizes
+/*@media only screen and (min-width: 750px) {
   #skills-h3,
   .biopic {
     display: block;
   }
-}
+}*/

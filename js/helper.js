@@ -26,8 +26,10 @@ var HTMLlocation = '<li class="flex-item"><span class="orange-text">location</sp
 var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 
-var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-column"></ul>';
-var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><div id="skills" class="flex-column show"></div>';
+// ul was #text and .show so these will need to be moved to... somewhere on the hover?!
+var HTMLskills = '<span class="white-text flex-item skillstext">%data%</span>';
+// REMOVED var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>'; becuase I want skills to be a string not a li
 
 var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
@@ -47,8 +49,8 @@ var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
 var HTMLschoolDegree = ' -- %data%</a>';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
-var HTMLschoolLocation = '<div class="location-text">%data%</div>';
-var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+var HTMLschoolLocation = '<div class="location-text">%data%</div><br>';
+var HTMLschoolMajor = '<span id="major">%data%</span>';
 
 var HTMLonlineClasses = '<br><h2>Online Classes</h2>';
 var HTMLonlineTitle = '<a href="#">%data%';
@@ -56,7 +58,7 @@ var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a class="online" href="#">%data%</a><br>';
 
-var internationalizeButton = '<br><button>Internationalize Name</button>';
+var internationalizeButton = '<button>Internationalize Name</button>';
 var googleMap = '<div id="map"></div>';
 
 
@@ -128,7 +130,7 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contact.location);
+    locations.push(bio.contacts.location);
 
     // iterates through school locations and appends each location to
     // the locations array. Note that forEach is used for array iteration
@@ -142,7 +144,7 @@ function initializeMap() {
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-    work.work.forEach(function(job){
+    work.jobs.forEach(function(job){
       locations.push(job.location);
     });
 
@@ -178,7 +180,8 @@ function initializeMap() {
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+      map.setZoom(16);
+      map.setCenter(marker.getPosition());
     });
 
     // this is where the pin actually gets added to the map.
