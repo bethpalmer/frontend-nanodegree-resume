@@ -1,17 +1,3 @@
-/*
-
-This file contains all of the code running in the background that makes resumeBuilder.js possible. We call these helper functions because they support your code in this course.
-
-Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
-
-Cameron Pittman
-*/
-
-
-/*
-These are HTML strings. As part of the course, you'll be using JavaScript functions
-replace the %data% placeholder text you see in them.
-*/
 var HTMLheaderName = '<h1 id="name">%data%</h1>';
 var HTMLheaderRole = '<span class="white-text">%data%</span><hr>';
 
@@ -27,9 +13,10 @@ var HTMLbioPic = '<img src="%data%" class="biopic">';
 var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 
 var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><div id="skills" class="flex-column show"></div>';
-// ul was #text and .show so these will need to be moved to... somewhere on the hover?!
 var HTMLskills = '<span class="white-text flex-item skillstext">%data%</span>';
-// REMOVED var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>'; becuase I want skills to be a string not a li
+// REMOVED var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>' and the <ul> from above:
+// Reason: The awesomeness hover over would not work with nested flex boxes. Grandparent #skills div would not take on height of li grandchildren.
+// Solution: Span allows me to work just one level deep, so #skills div content does not overspill, and I have a class I can hook show / hide class to.
 
 var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
@@ -37,7 +24,6 @@ var HTMLworkTitle = ' - %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
-// var HTMLworkDetail = '<li class="flex-item"><span class="work">%data%</span></li>';
 
 var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a href="#">%data%</a>';
