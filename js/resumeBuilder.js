@@ -57,9 +57,6 @@ var bio = {
         function displaySkills1() {
             for (var i = 0; i < bio.skills.length; i++) {
                 var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-                // var allSkills = "";
-                // allSkills += formattedSkill;
-                // $(allSkills).wrap("<div id='skillstext'></div>");
                 $("#skills").append(formattedSkill);
             }
 
@@ -79,8 +76,6 @@ var bio = {
             $(".awesome").removeClass("show").addClass("hide");
             $(".skillstext").removeClass("hide").addClass("show");
         });
-        // //Empty div added to bottom of header to fix issue with header not flexing right, after implementing the awesome mouseover solution.
-        // 		$("#header").append("<div classs='flex-column'></div>")
     }
 };
 
@@ -90,21 +85,21 @@ var work = {
         "employer": "Concordia Ltd",
         "dates": "2010 - 2014",
         "location": "Portslade",
-        "description": "Responsible for managing all aspects of IT provision and support for this organisation of 25.\
-					This included IT strategy, integral databse, infrastructure, website and online customer portals, and office tech.\
-					I implemented a program of system upgrades including:<ul class='work'>\
-					<li>Leading a project to create and implement a £100k CRM system to replace the legacy databse and customer portals, moving from MS SQL to MySQL and .NET to Ruby on Rails.</li>\
-					<li>Leading a project to virtualise the internal infrastructure replacing an array of outdated servers.</li>\
-					<li>Office wide desktop upgrades to Windows 7 and MS Office 2010</li>\
-					<li>Redefinition of comprehensive back up and DR strategy</li></ul>",
+        "description": "Responsible for managing all aspects of IT provision and support for this organisation of 25. " +
+					"This included IT strategy, integral databse, infrastructure, website and online customer portals, and office tech. " +
+					"I implemented a program of system upgrades including:<ul class='work'>" +
+					"<li>Leading a project to create and implement a £100k CRM system to replace the legacy databse and customer portals, moving from MS SQL to MySQL and .NET to Ruby on Rails.</li>" +
+					"<li>Leading a project to virtualise the internal infrastructure replacing an array of outdated servers.</li>" +
+      "<li>Office wide desktop upgrades to Windows 7 and MS Office 2010</li>" +
+					"<li>Redefinition of comprehensive back up and DR strategy</li></ul>",
         "url": "http://www.concordia.org.uk/"
     }, {
         "title": "Service Desk Operator for the NHS",
         "employer": "Sussex HIS",
         "dates": "2009-2010",
         "location": "Hastings / Durrington",
-        "description": "Working on a busy fast-paced service desk providing advice, remote troubleshooting, basic server side administration\
-					tasks, and escalating cases appropriately for a user base of 30k NHS staff throughout the southeast.",
+        "description": "Working on a busy fast-paced service desk providing advice, remote troubleshooting, basic server side administration " +
+					"tasks, and escalating cases appropriately for a user base of 30k NHS staff throughout the southeast.",
         "url": "#"
     }, {
         "title": "Hardware Engineer",
@@ -246,7 +241,6 @@ var education = {
         });
     }
 };
-
 
 function inName(name) {
     name = bio.name.trim().split(" ");
