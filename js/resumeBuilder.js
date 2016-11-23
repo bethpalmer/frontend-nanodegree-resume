@@ -9,7 +9,7 @@ var bio = {
         "blog": "www.bstylee.me.uk",
         "location": "Brighton, UK"
     },
-    "bioPic": "images/profile.jpg",
+    "biopic": "images/profile.jpg",
     "welcomeMessage": "Helloooo, welcome to my online resume where I get to tell you a bit about myself whilst also showing off some of my JavaScript skills. Happy you stopped by :)",
     "skills": ["HTML, CSS, JavaScript, GitHub, Grunt, SQL, MySQL, (some knowledge of) Ruby", "Adobe Illustrator, Advanced MS Office, Wordpress, DNS",
         "Troubleshooting, Problem solving, Creative thinking", "Viewing things holistically, Simplifying, Customer service",
@@ -23,31 +23,24 @@ var bio = {
         $("#header").prepend(formattedName);
 
         var email = HTMLemail.replace("%data%", bio.contacts.email);
-        $("#topContacts").append(email);
+        var mobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
         var twitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-        $("#topContacts").append(twitter);
         var github = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#topContacts").append(github);
         var blog = HTMLblog.replace("%data%", bio.contacts.blog);
-        $("#topContacts").append(blog);
         var location = HTMLlocation.replace("%data%", bio.contacts.location);
-        $("#topContacts").append(location);
+        $("#topContacts, #footerContacts").append(email, mobile, twitter, github, blog, location);
 
-        $("#footerContacts").append(email);
-        $("#footerContacts").append(twitter);
-        $("#footerContacts").append(github);
-        $("#footerContacts").append(blog);
-        $("#footerContacts").append(location);
-
-        $("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
+        $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
 
         $(function() {
-            $(".biopic").hover(function() {
+            $(".biopic").hover(
+                function() {
                     $(".biopic").attr('src', 'images/liveWellOutlines1.jpg');
                 },
                 function() {
                     $(".biopic").attr('src', 'images/profile.jpg');
-                });
+                }
+            );
         });
 
 
@@ -59,11 +52,8 @@ var bio = {
                 var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
                 $("#skills").append(formattedSkill);
             }
-
         }
         displaySkills1();
-
-        var HTMLskillsImage = '<img src="%data%" class="hide awesome" height = 125px>';
 
         var image = HTMLskillsImage.replace("%data%", bio.skillsImage);
         $("#skills").append(image);
@@ -86,12 +76,12 @@ var work = {
         "dates": "2010 - 2014",
         "location": "Portslade",
         "description": "Responsible for managing all aspects of IT provision and support for this organisation of 25. " +
-					"This included IT strategy, integral databse, infrastructure, website and online customer portals, and office tech. " +
-					"I implemented a program of system upgrades including:<ul class='work'>" +
-					"<li>Leading a project to create and implement a £100k CRM system to replace the legacy databse and customer portals, moving from MS SQL to MySQL and .NET to Ruby on Rails.</li>" +
-					"<li>Leading a project to virtualise the internal infrastructure replacing an array of outdated servers.</li>" +
-      "<li>Office wide desktop upgrades to Windows 7 and MS Office 2010</li>" +
-					"<li>Redefinition of comprehensive back up and DR strategy</li></ul>",
+            "This included IT strategy, integral databse, infrastructure, website and online customer portals, and office tech. " +
+            "I implemented a program of system upgrades including:<ul class='work'>" +
+            "<li>Leading a project to create and implement a £100k CRM system to replace the legacy databse and customer portals, moving from MS SQL to MySQL and .NET to Ruby on Rails.</li>" +
+            "<li>Leading a project to virtualise the internal infrastructure replacing an array of outdated servers.</li>" +
+            "<li>Office wide desktop upgrades to Windows 7 and MS Office 2010</li>" +
+            "<li>Redefinition of comprehensive back up and DR strategy</li></ul>",
         "url": "http://www.concordia.org.uk/"
     }, {
         "title": "Service Desk Operator for the NHS",
@@ -99,7 +89,7 @@ var work = {
         "dates": "2009-2010",
         "location": "Hastings / Durrington",
         "description": "Working on a busy fast-paced service desk providing advice, remote troubleshooting, basic server side administration " +
-					"tasks, and escalating cases appropriately for a user base of 30k NHS staff throughout the southeast.",
+            "tasks, and escalating cases appropriately for a user base of 30k NHS staff throughout the southeast.",
         "url": "#"
     }, {
         "title": "Hardware Engineer",
@@ -116,16 +106,10 @@ var work = {
             var workEmployer = HTMLworkEmployer.replace("%data%", workInfo.employer).replace("#", workInfo.url);
             var workTitle = HTMLworkTitle.replace("%data%", workInfo.title);
             var workEmployerAndTitle = workEmployer + workTitle;
-            $(".work-entry:last").append(workEmployerAndTitle);
-
             var workDates = HTMLworkDates.replace("%data%", workInfo.dates);
-            $(".work-entry:last").append(workDates);
-
             var workLocation = HTMLworkLocation.replace("%data%", workInfo.location);
-            $(".work-entry:last").append(workLocation);
-
             var workDescription = HTMLworkDescription.replace("%data%", workInfo.description);
-            $(".work-entry:last").append(workDescription);
+            $(".work-entry:last").append(workEmployerAndTitle, workDates, workLocation, workDescription);
         });
 
     }
@@ -150,14 +134,9 @@ var projects = {
             $("#projects").append(HTMLprojectStart);
 
             var projectTitle = HTMLprojectTitle.replace("%data%", projectInfo.title);
-            $(".project-entry:last").append(projectTitle);
-
             var projectDates = HTMLprojectDates.replace("%data%", projectInfo.dates);
-            $(".project-entry:last").append(projectDates);
-
             var projectDescription = HTMLprojectDescription.replace("%data%", projectInfo.description);
-            $(".project-entry:last").append(projectDescription);
-
+            $(".project-entry:last").append(projectTitle, projectDates, projectDescription);
             for (var i = 0; i < projectInfo.images.length; i++) {
                 var projectImage = HTMLprojectImage.replace("%data%", projectInfo.images[i]);
                 $(".project-entry:last").append(projectImage);
@@ -200,44 +179,31 @@ var education = {
         "dates": "2016",
         "url": "https://teamtreehouse.com"
     }],
-    "displaySchools": function() {
+    "display": function() {
         education.schools.forEach(function(schoolInfo) {
             $("#education").append(HTMLschoolStart);
 
             var schoolName = HTMLschoolName.replace("%data%", schoolInfo.name).replace("#", schoolInfo.url);
             var schoolDegree = HTMLschoolDegree.replace("%data%", schoolInfo.degree);
             var nameAndDegree = schoolName + schoolDegree;
-            $(".education-entry:last").append(nameAndDegree);
-
             var schoolDates = HTMLschoolDates.replace("%data%", schoolInfo.dates);
-            $(".education-entry:last").append(schoolDates);
-
             var schoolLocation = HTMLschoolLocation.replace("%data%", schoolInfo.location);
-            $(".education-entry:last").append(schoolLocation);
-
+            $(".education-entry:last").append(nameAndDegree, schoolDates, schoolLocation);
             for (var i = 0; i < schoolInfo.majors.length; i++) {
                 var formattedMajor = HTMLschoolMajor.replace("%data%", schoolInfo.majors[i]);
                 $(".education-entry:last").append(formattedMajor);
             }
         });
-    },
-    "displayOnlineCourses": function() {
-
         $("#education").append(HTMLonlineClasses);
-
         education.onlineCourses.forEach(function(courseInfo) {
             $("#education").append(HTMLschoolStart);
 
             var courseTitle = HTMLonlineTitle.replace("%data%", courseInfo.title).replace("#", courseInfo.url);
             var courseSchool = HTMLonlineSchool.replace("%data%", courseInfo.school);
             var titleAndSchool = courseTitle + courseSchool;
-            $(".education-entry:last").append(titleAndSchool);
-
             var courseDates = HTMLonlineDates.replace("%data%", courseInfo.dates);
-            $(".education-entry:last").append(courseDates);
-
             var courseURL = HTMLonlineURL.replace("%data%", courseInfo.url).replace("#", courseInfo.url);
-            $(".education-entry:last").append(courseURL);
+            $(".education-entry:last").append(titleAndSchool, courseDates, courseURL);
         });
     }
 };
@@ -252,8 +218,7 @@ function inName(name) {
 bio.display();
 work.display();
 projects.display();
-education.displaySchools();
-education.displayOnlineCourses();
+education.display();
 
 $("#workExperience").prepend(internationalizeButton);
 

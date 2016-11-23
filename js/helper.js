@@ -17,6 +17,8 @@ var HTMLskills = '<span class="white-text flex-item skillstext">%data%</span>';
 // REMOVED var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>' and the <ul> from above:
 // Reason: The awesomeness hover over would not work with nested flex boxes. Grandparent #skills div would not take on height of li grandchildren.
 // Solution: Span allows me to work just one level deep, so #skills div content does not overspill, and I have a class I can hook show / hide class to.
+// Added HTMLskillsImage for awesomeness hoverover
+var HTMLskillsImage = '<img src="%data%" class="hide awesome" height = 125px>';
 
 var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
